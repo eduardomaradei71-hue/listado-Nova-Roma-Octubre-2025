@@ -47,6 +47,36 @@
       padding: 30px;
       border-radius: 10px;
       margin-top: 40px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 250px;
+    }
+    .promo-content {
+      flex: 1;
+      z-index: 2;
+      position: relative;
+    }
+    .promo-image {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      opacity: 0.3;
+      border: 2px solid #d4af37;
+    }
+    .promo-image.left {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .promo-image.right {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
     }
     .logo {
       font-size: 3em;
@@ -59,10 +89,89 @@
       margin-top: 10px;
       color: #f0d9b5;
     }
+    .new-item {
+      background-color: #2a4d2a;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      color: white;
+      text-decoration: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .whatsapp-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+      background: linear-gradient(45deg, #128C7E, #25D366);
+    }
+    .whatsapp-btn:before {
+      content: "📱";
+      margin-right: 10px;
+      font-size: 1.3em;
+    }
+    .whatsapp-btn:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.5s ease;
+      transform: translate(-50%, -50%);
+    }
+    .whatsapp-btn:hover:after {
+      width: 300px;
+      height: 300px;
+    }
+    .whatsapp-text {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .whatsapp-btn {
+      animation: pulse 2s infinite;
+    }
+    @media (max-width: 768px) {
+      .promo {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+      .promo-image {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        opacity: 0.6;
+        margin: 10px;
+      }
+      .promo-image.left, .promo-image.right {
+        position: relative;
+        transform: none;
+        top: auto;
+        left: auto;
+        right: auto;
+      }
+      .promo-content {
+        margin: 20px 0;
+      }
+    }
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo">NOVA ROMA</div>
     <div class="slogan">Calidad y Estilo desde 1997</div>
@@ -71,16 +180,25 @@
 
   <section>
     <div class="promo">
-      <h2>Promoción Especial</h2>
-      <p><strong>Nova Roma Extreme</strong> – Eau de Parfum 50 mL</p>
-      <p>Precio por unidad: <strong>$18.000</strong></p>
-      <p>¡10% de descuento al llevar 3 unidades o más!</p>
-      <p>Ahora con <strong>nuevas fragancias</strong> disponibles.</p>
-      <p>Pedidos por Whatsapp al 115015 9852.</p>
+      <img src="imagen1.jpg" alt="Nova Roma Perfumes" class="promo-image left">
+      <div class="promo-content">
+        <h2>Promoción Especial</h2>
+        <p><strong>Nova Roma Extreme</strong> – Eau de Parfum 50 mL</p>
+        <p>Precio por unidad: <strong>$18.000</strong></p>
+        <p>¡10% de descuento al llevar 3 unidades o más!</p>
+        <p>Ahora con <strong>nuevas fragancias</strong> disponibles.</p>
+        <a href="https://wa.me/5491150159852?text=Hola! Me interesa conocer más sobre los perfumes Nova Roma. ¿Podrían enviarme información?" class="whatsapp-btn" target="_blank">
+          <span class="whatsapp-text">¡PEDÍ POR WHATSAPP!</span>
+        </a>
+        <br>
+        <div style="color: #d4af37; font-size: 1.5em; font-weight: bold; margin-top: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+          📞 115015 9852
+        </div>
+      </div>
+      <img src="imagen2.jpg" alt="Nova Roma Extreme" class="promo-image right">
     </div>
   </section>
 
-  <!-- FEMENINAS -->
   <section>
     <h2>Fragancias Femeninas</h2>
     <table>
@@ -100,7 +218,7 @@
         <tr><td>212 VIP C. Herrera</td><td>Carolina Herrera</td><td>Oriental Vainilla</td><td>Ron, maracuyá</td><td>Gardenia, almizcle</td><td>Vainilla, haba tonka</td></tr>
         <tr><td>212 VIP Rosé</td><td>Carolina Herrera</td><td>Floral Frutal</td><td>Champagne rosé, pimienta rosa</td><td>Flor de duraznero, fresia</td><td>Queenwood, almizcle</td></tr>
         <tr><td>5th Avenue</td><td>Elizabeth Arden</td><td>Floral Aldehídico</td><td>Bergamota, lila, magnolia, melocotón</td><td>Violeta, rosa búlgara, ylang-ylang, jazmín</td><td>Iris, ámbar, almizcle tibetano, sándalo</td></tr>
-        <tr><td>Acqua Di Gioia</td><td>Armani</td><td>Floral Acuático</td><td>Limón de Amalfi, menta</td><td>Jazmín acuático</td><td>Cedro de Virginia, azúcar morena, lábano</td></tr>
+        <tr><td>Acqua Di Gioia</td><td>Armani</td><td>Floral Acuático</td><td>Limón de Amalfi, menta</td><td>Jazmín acuático</td><td>Cedro de Virginia, azúcar morena, líbano</td></tr>
         <tr><td>Alien</td><td>Mugler</td><td>Oriental Floral</td><td>Jazmín sambac</td><td>Madera de cachemira</td><td>Ámbar</td></tr>
         <tr><td>Amarige</td><td>Givenchy</td><td>Floral</td><td>Naranja, mandarina, ciruela, neroli</td><td>Mimosa, gardenia, ylang-ylang</td><td>Sándalo, vainilla, ámbar, haba tonka, almizcle</td></tr>
         <tr><td>Amor Amor</td><td>Cacharel</td><td>Floral Frutal</td><td>Grosellas negras, naranja, mandarina, toronja, bergamota</td><td>Rosa, chabacano, jazmín, azucena, lirio del valle</td><td>Cedro de Virginia, vainilla, haba tonka, almizcle, ámbar</td></tr>
@@ -112,34 +230,39 @@
         <tr><td>Be Delicious</td><td>DKNY</td><td>Floral Frutal</td><td>Manzana verde, pepino, pomelo</td><td>Magnolia, nardos, lirio del valle, rosa, violeta</td><td>Sándalo, ámbar blanco, maderas suaves</td></tr>
         <tr><td>Black XS</td><td>Paco Rabanne</td><td>Floral Frutal</td><td>Tamarindo, frambuesa, rosada</td><td>Heliotropo, flor de azahar</td><td>Vainilla, haba tonka, sándalo, pachulí</td></tr>
         <tr><td>Blue</td><td>Ralph Lauren</td><td>Floral Frutal</td><td>Mandarina, loto, melón</td><td>Rosa, lirio, magnolia</td><td>Sándalo, musgo de roble, almizcle</td></tr>
-        <tr><td>Bombshell Nights</td><td>Victoria’s Secret</td><td>Floral Frutal</td><td>Grosella negra, flor de dalia</td><td>—</td><td>Notas amaderadas</td></tr>
+        <tr><td>Bombshell Nights</td><td>Victoria's Secret</td><td>Floral Frutal</td><td>Grosella negra, flor de dalia</td><td>–</td><td>Notas amaderadas</td></tr>
         <tr><td>Cabotine</td><td>Grès</td><td>Floral Verde</td><td>Pera, albahaca, naranja</td><td>Jazmín, rosa, ylang-ylang</td><td>Sándalo, almizcle, cedro</td></tr>
         <tr><td>Carolina Herrera</td><td>Carolina Herrera</td><td>Floral Almizcle</td><td>Notas verdes, frutas tropicales</td><td>Jazmín, rosa</td><td>Ámbar, almizcle</td></tr>
+        <tr><td>CH</td><td>Carolina Herrera</td><td>Floral Almizcle</td><td>Notas verdes, frutas tropicales</td><td>Jazmín, rosa</td><td>Ámbar, almizcle</td></tr>
         <tr><td>Chanel Nº5</td><td>Chanel</td><td>Floral Aldehídico</td><td>Aldehídos, neroli, limón</td><td>Rosa, jazmín, lirio</td><td>Sándalo, vainilla, almizcle</td></tr>
         <tr><td>Cool Water</td><td>Davidoff</td><td>Aromática Acuática</td><td>Menta, lavanda, cilantro</td><td>Geranio, neroli, jazmín</td><td>Almizcle, cedro, ámbar</td></tr>
         <tr><td>Dahab Kajal</td><td>Kajal</td><td>Oriental Vainilla</td><td>Bergamota, naranja</td><td>Vainilla, jazmín, azucena</td><td>Sándalo, ámbar, almizcle</td></tr>
         <tr><td>Dolce Femme</td><td>Dolce & Gabbana</td><td>Floral Frutal</td><td>Melón, papaya, fresa</td><td>Nardo, azucena, jazmín</td><td>Sándalo, cedro, almizcle</td></tr>
         <tr><td>Downtown</td><td>Calvin Klein</td><td>Floral Frutal</td><td>Limón, pera, aldehídos</td><td>Magnolia, jazmín, gardenia</td><td>Sándalo, cedro, almizcle</td></tr>
         <tr><td>Eden</td><td>Cacharel</td><td>Floral Frutal</td><td>Mandarina, melón, limón</td><td>Nardo, azucena, jazmín</td><td>Sándalo, cedro, almizcle</td></tr>
+        <tr class="new-item"><td>Enfants et Mamans</td><td>Enfants</td><td>Floral Suave</td><td>Cítricos suaves, aldehídos</td><td>Rosa, jazmín, lirio</td><td>Almizcle suave, vainilla</td></tr>
         <tr><td>Extravagance</td><td>Givenchy</td><td>Floral Frutal</td><td>Pera, frambuesa, limón</td><td>Rosa, peonía, lirio</td><td>Ambroxan, cedro, vainilla</td></tr>
         <tr><td>Fame</td><td>Paco Rabanne</td><td>Floral Frutal</td><td>Mango, jengibre, bergamota</td><td>Jazmín, incienso</td><td>Sándalo, cedro, almizcle</td></tr>
         <tr><td>Flower by Kenzo</td><td>Kenzo</td><td>Floral Almizcle</td><td>Bergamota, rosa, violeta</td><td>Rosa, jazmín, ylang-ylang</td><td>Vainilla, almizcle, sándalo</td></tr>
         <tr><td>Giorgio</td><td>Beverly Hills</td><td>Floral Aldehídico</td><td>Aldehídos, frutas, bergamota</td><td>Rosa, jazmín, gardenia</td><td>Vainilla, ámbar, almizcle</td></tr>
         <tr><td>Good Girl</td><td>Carolina Herrera</td><td>Floral Oriental</td><td>Limón, almendra, café</td><td>Tuberosa, jazmín, orris</td><td>Cacao, haba tonka, sándalo</td></tr>
-        <tr><td>Gucci Bloom</td><td>Gucci</td><td>Floral Blanco</td><td>Jazmín sambac, tuberosa, rosa</td><td>—</td><td>Sándalo, almizcle, orris</td></tr>
+        <tr><td>Gucci Bloom</td><td>Gucci</td><td>Floral Blanco</td><td>Jazmín sambac, tuberosa, rosa</td><td>–</td><td>Sándalo, almizcle, orris</td></tr>
         <tr><td>Hot Couture</td><td>Givenchy</td><td>Floral Almizcle</td><td>Frambuesa, naranja, pimienta rosa</td><td>Magnolia, azucena, vetiver</td><td>Almizcle, sándalo, haba tonka</td></tr>
         <tr><td>Idôle</td><td>Lancôme</td><td>Floral Chipre</td><td>Bergamota, pera, piña</td><td>Rosa, jazmín, nardos</td><td>Pachulí, almizcle, cedro</td></tr>
         <tr><td>Irresistible</td><td>Givenchy</td><td>Floral Frutal</td><td>Pera, frambuesa, limón</td><td>Rosa, peonía, iris</td><td>Ambroxan, cedro, almizcle</td></tr>
-        <tr><td>J’Adore</td><td>Dior</td><td>Floral Frutal</td><td>Bergamota, pera, melocotón</td><td>Jazmín, rosa, ylang-ylang</td><td>Vainilla, sándalo, almizcle</td></tr>
+        <tr><td>J'Adore</td><td>Dior</td><td>Floral Frutal</td><td>Bergamota, pera, melocotón</td><td>Jazmín, rosa, ylang-ylang</td><td>Vainilla, sándalo, almizcle</td></tr>
         <tr><td>Kenzo Amour</td><td>Kenzo</td><td>Oriental Vainilla</td><td>Arroz, té blanco, frambuesa</td><td>Flor de azahar, ylang-ylang</td><td>Vainilla, almizcle, sándalo</td></tr>
-        <tr><td>Kenzo d’Été</td><td>Kenzo</td><td>Floral Verde</td><td>Bergamota, limón, hojas verdes</td><td>Jazmín, rosa, lirio</td><td>Sándalo, cedro, almizcle</td></tr>
+        <tr><td>Kenzo d'Été</td><td>Kenzo</td><td>Floral Verde</td><td>Bergamota, limón, hojas verdes</td><td>Jazmín, rosa, lirio</td><td>Sándalo, cedro, almizcle</td></tr>
         <tr><td>Kenzo World</td><td>Kenzo</td><td>Floral Oriental</td><td>Frambuesa, pera, limón</td><td>Peonía, jazmín, azucena</td><td>Ambar, almizcle, sándalo</td></tr>
         <tr><td>La Vie Est Belle</td><td>Lancôme</td><td>Floral Frutal Gourmand</td><td>Grosella negra, pera</td><td>Iris, jazmín, azahar</td><td>Praliné, vainilla, pachulí</td></tr>
         <tr><td>Lady Million</td><td>Paco Rabanne</td><td>Floral Frutal</td><td>Neroli, frambuesa, amalfi</td><td>Jazmín, gardenia, azahar</td><td>Miel, pachulí, ámbar</td></tr>
+        <tr class="new-item"><td>L'Eau par Kenzo</td><td>Kenzo</td><td>Floral Acuático</td><td>Bergamota, limón, hojas verdes</td><td>Jazmín acuático, lirio</td><td>Cedro, almizcle, ámbar</td></tr>
         <tr><td>L'Interdit</td><td>Givenchy</td><td>Floral Blanco</td><td>Bergamota, pera</td><td>Jazmín, tuberosa</td><td>Vainilla, haba tonka, vetiver</td></tr>
+        <tr class="new-item"><td>L'Interdit Rouge</td><td>Givenchy</td><td>Floral Oriental</td><td>Pimienta blanca, jengibre</td><td>Jazmín sambac, tuberosa</td><td>Vainilla, pachulí, sándalo</td></tr>
         <tr><td>L'Eau d'Issey</td><td>Issey Miyake</td><td>Floral Acuático</td><td>Flor de loto, melón, fresia</td><td>Azucena, peonía, flor de azahar</td><td>Cedro, sándalo, ámbar</td></tr>
         <tr><td>Libre</td><td>YSL</td><td>Oriental Floral</td><td>Lavanda, mandarina, neroli</td><td>Jazmín, flor de azahar</td><td>Vainilla, cedro, ámbar</td></tr>
         <tr><td>Light Blue</td><td>Dolce & Gabbana</td><td>Floral Frutal</td><td>Limón, manzana, campanula</td><td>Bambú, rosa blanca</td><td>Cedro, almizcle, ámbar</td></tr>
+        <tr class="new-item"><td>Million Gold</td><td>Paco Rabanne</td><td>Almizcle Floral Amaderado</td><td>Azafrán, nuez moscada, lavanda</td><td>Madera OUD</td><td>Almizcle, pachulí</td></tr>
         <tr><td>Miss Dior Chérie</td><td>Dior</td><td>Floral Frutal</td><td>Mandarina, fresa, cereza</td><td>Rosa, jazmín, violeta</td><td>Almizcle, cedro, ámbar</td></tr>
         <tr><td>Moschino Toy 2</td><td>Moschino</td><td>Floral Amaderado</td><td>Manzana, mandarina, magnolia</td><td>Peonía, jazmín, lirio</td><td>Sándalo, almizcle, ámbar</td></tr>
         <tr><td>My Way</td><td>Armani</td><td>Floral Blanco</td><td>Bergamota, naranja, flor de azahar</td><td>Jazmín, tuberosa</td><td>Vainilla, cedro, almizcle</td></tr>
@@ -149,7 +272,7 @@
         <tr><td>Organza</td><td>Givenchy</td><td>Oriental Floral</td><td>Gardenia, azucena, neroli</td><td>Jazmín, azahar, peonía</td><td>Vainilla, ámbar, sándalo</td></tr>
         <tr><td>Oui La Vie Est Belle</td><td>Lancôme</td><td>Floral Frutal</td><td>Frambuesa, pera, rosa</td><td>Iris, jazmín, azahar</td><td>Vainilla, haba tonka, ámbar</td></tr>
         <tr><td>Paloma Picasso</td><td>Picasso</td><td>Oriental Floral</td><td>Bergamota, neroli, cilantro</td><td>Jazmín, ylang-ylang, rosa</td><td>Sándalo, pachulí, ámbar</td></tr>
-        <tr><td>Poême</td><td>Lancôme</td><td>Oriental Floral</td><td>Naranja, mimosa, aldehídos</td><td>Nardo, ylang-ylang, jazmín</td><td>Vainilla, cedro, almizcle</td></tr>
+        <tr><td>Poème</td><td>Lancôme</td><td>Oriental Floral</td><td>Naranja, mimosa, aldehídos</td><td>Nardo, ylang-ylang, jazmín</td><td>Vainilla, cedro, almizcle</td></tr>
         <tr><td>Poison Girl</td><td>Christian Dior</td><td>Oriental Vainilla</td><td>Limón, naranja, almendra</td><td>Rosa, jazmín, azahar</td><td>Vainilla, tonka, café, ámbar</td></tr>
         <tr><td>Polo Sport</td><td>Ralph Lauren</td><td>Floral Verde</td><td>Aldehídos, limón, menta</td><td>Lavanda, geranio, clavel</td><td>Cedro, sándalo, almizcle</td></tr>
         <tr><td>Pure Poison</td><td>Christian Dior</td><td>Floral Blanco</td><td>Naranja, bergamota, neroli</td><td>Jazmín, gardenia, azahar</td><td>Sándalo, cedro, almizcle</td></tr>
@@ -168,7 +291,7 @@
     </table>
   </section>
 
-  <!-- MASCULINAS (Reordenadas alfabéticamente) -->
+  <!-- MASCULINAS -->
   <section>
     <h2>Fragancias Masculinas</h2>
     <table>
@@ -192,7 +315,8 @@
         <tr><td>212 VIP Black</td><td>Carolina Herrera</td><td>Amaderada Oriental</td><td>Absenta, anís, hinojo</td><td>Lavanda</td><td>Vainilla negra, almizcle</td></tr>
         <tr><td>Acqua Di Giò</td><td>Giorgio Armani</td><td>Acuática Cítrica</td><td>Bergamota, neroli, limón</td><td>Freesia, cilantro, nuez</td><td>Almizcle, cedro, pachulí</td></tr>
         <tr><td>Armani Code</td><td>Giorgio Armani</td><td>Oriental Amaderado</td><td>Limón, bergamota, naranja</td><td>Aceituna, anís estrellado, glicerol</td><td>Vainilla, cuero, tabaco</td></tr>
-        <tr><td>Armani Mania</td><td>G. Armani</td><td>Amaderado Aromático</td><td>Mandarina, limón, cedro</td><td>Sálvia, vetiver, jazmín</td><td>Madera de cachemira, almizcle, ámbar</td></tr>
+        <tr class="new-item"><td>Armani Code Black</td><td>Giorgio Armani</td><td>Oriental Amaderado</td><td>Bergamota, manzana verde</td><td>Cardamomo, nuez moscada</td><td>Haba tonka, ámbar, maderas</td></tr>
+        <tr><td>Armani Mania</td><td>G. Armani</td><td>Amaderado Aromático</td><td>Mandarina, limón, cedro</td><td>Salvia, vetiver, jazmín</td><td>Madera de cachemira, almizcle, ámbar</td></tr>
         <tr><td>Azzaro</td><td>L. Azzaro</td><td>Aromática Fougère</td><td>Anís, lavanda, albahaca</td><td>Vetiver, sándalo, geranio</td><td>Almizcle, ámbar, cedro</td></tr>
         <tr><td>Bad Boy</td><td>Carolina Herrera</td><td>Oriental Especiado</td><td>Pimienta blanca, bergamota, pimienta rosa</td><td>Cedro, salvia sclarea</td><td>Tonka, cacao</td></tr>
         <tr><td>Black XS</td><td>Paco Rabanne</td><td>Oriental Amaderado</td><td>Limón, salvia, tagete</td><td>Canela, cardamomo, praliné, bálsamo de Tolú</td><td>Ámbar negro, pachulí, palisandro, ébano</td></tr>
@@ -213,17 +337,21 @@
         <tr><td>Kenzo Sport</td><td>Kenzo</td><td>Aromático Verde</td><td>Limón, hojas verdes, menta</td><td>Jazmín, geranio, cedro</td><td>Sándalo, vetiver, almizcle</td></tr>
         <tr><td>Kenzo Homme Intense</td><td>Kenzo</td><td>Amaderado Acuático</td><td>Pomelo, jengibre, menta</td><td>Vetiver, sándalo, geranio</td><td>Almizcle, ámbar, cedro</td></tr>
         <tr><td>L'eau D'issey</td><td>Issey Miyake</td><td>Acuática Floral</td><td>Yuzu, cítricos, coriandro</td><td>Nardo, ciclamen, canela</td><td>Sándalo, vetiver, almizcle</td></tr>
+        <tr class="new-item"><td>Lattafa Khamrah</td><td>Lattafa</td><td>Oriental Vainilla</td><td>Manzana, canela, cardamomo, jengibre</td><td>Praliné, frutas confitadas, flores blancas</td><td>Vainilla, café, haba tonka, benjuí, almizcle</td></tr>
+        <tr class="new-item"><td>Lattafa Teriaq</td><td>Lattafa</td><td>Oriental Especiado</td><td>Caramelo, almendra, damasco, pimienta</td><td>Miel, ruibarbo, flores blancas, rosa</td><td>Cuero, vainilla, labdano, vetiver, almizcle</td></tr>
         <tr><td>Le Male</td><td>Jean Paul Gaultier</td><td>Oriental Fougère</td><td>Menta, artemisa, cardamomo</td><td>Lavanda, naranja, canela</td><td>Vainilla, cedro, sándalo</td></tr>
         <tr><td>Light Blue</td><td>Dolce & Gabbana</td><td>Cítrico Aromático</td><td>Limón, mandarina, bergamota</td><td>Jazmín, rosa, hierbas</td><td>Cedro, almizcle, ámbar</td></tr>
+        <tr class="new-item"><td>Million Gold</td><td>Paco Rabanne</td><td>Amaderada Especiada</td><td>Bergamota, hojas de violeta</td><td>Cardamomo, pimienta, canela</td><td>Pachulí, sándalo, cedro, ámbar</td></tr>
         <tr><td>One Million</td><td>Paco Rabanne</td><td>Oriental Especiada</td><td>Pomelo, menta, mandarina</td><td>Canela, especias, rosa</td><td>Cuero, ámbar, madera</td></tr>
         <tr><td>Oud Wood</td><td>Tom Ford</td><td>Amaderado Especiado</td><td>Cardamomo, palo de rosa, pimienta rosa</td><td>Oud, sándalo, vetiver</td><td>Vainilla, tonka, ámbar</td></tr>
+        <tr class="new-item"><td>Oud For Greatness</td><td>Initio</td><td>Amaderado Especiado</td><td>Pera, rosa, lavanda</td><td>Ylang ylang, jazmín</td><td>Almizcle, vainilla, musgo de roble</td></tr>
         <tr><td>Phantom</td><td>Paco Rabanne</td><td>Aromática Cremosa</td><td>Limón, lavanda</td><td>Vainilla cremosa, coco</td><td>Vetiver, pachulí</td></tr>
         <tr><td>Play</td><td>Givenchy</td><td>Aromático Fougère</td><td>Bergamota, mandarina, pimienta rosada</td><td>Café, amyris, vetiver</td><td>Vetiver, patchouli, almizcle</td></tr>
         <tr><td>Polo</td><td>Ralph Lauren</td><td>Aromática Fougère</td><td>Aldehídos, menta, artemisa</td><td>Geranio, clavel, canela</td><td>Vetiver, tabaco, cedro</td></tr>
         <tr><td>Polo Blue</td><td>Ralph Lauren</td><td>Aromática Acuática</td><td>Melón, mandarina, pepino</td><td>Salvia, albahaca, geranio</td><td>Vainilla, almizcle, cedro</td></tr>
         <tr><td>Polo Sport</td><td>Ralph Lauren</td><td>Aromático Verde</td><td>Aldehídos, limón, menta</td><td>Lavanda, geranio, clavel</td><td>Cedro, sándalo, almizcle</td></tr>
         <tr><td>Pure XS</td><td>Paco Rabanne</td><td>Oriental Especiado</td><td>Jengibre, limón, pimiento</td><td>Vainilla, canela, licor</td><td>Cedro, haba tonka, almizcle</td></tr>
-        <tr><td>Sauvage</td><td>Dior</td><td>Aromático Amaderado</td><td>Bergamota, pimienta</td><td>Geranio, lavanda, elemi</td><td>Ambroxan, cedro, lábano</td></tr>
+        <tr><td>Sauvage</td><td>Dior</td><td>Aromático Amaderado</td><td>Bergamota, pimienta</td><td>Geranio, lavanda, elemi</td><td>Ambroxan, cedro, líbano</td></tr>
         <tr><td>Scandal</td><td>Jean Paul Gaultier</td><td>Oriental Fougère</td><td>Mandarina, romero, clavo</td><td>Nardo, geranio, canela</td><td>Vetiver, cedro, almizcle</td></tr>
         <tr><td>Terre D'Hermès</td><td>Hermès</td><td>Amaderada Mineral</td><td>Naranja, pomelo</td><td>Pimienta, pelargonio</td><td>Cedro, vetiver, benjuí</td></tr>
         <tr><td>Tommy</td><td>Tommy Hilfiger</td><td>Aromático Fougère</td><td>Limón, menta, bergamota</td><td>Lavanda, manzana, canela</td><td>Cedro, ámbar, almizcle</td></tr>
@@ -253,14 +381,17 @@
         <tr><td>Baccarat Rouge 540</td><td>Francis Kurkdjian</td><td>Floral Ámbar Amaderada</td><td>Azafrán, jazmín</td><td>Ámbarwood, ámbar gris</td><td>Resina de abeto, cedro</td></tr>
         <tr><td>Erba Pura</td><td>Xerjoff</td><td>Cítrico Amaderado</td><td>Bergamota de Calabria, naranja de Sicilia, limón</td><td>Frutas rojas del Mediterráneo</td><td>Vainilla de Madagascar, ámbar, almizcle blanco</td></tr>
         <tr><td>Everyone</td><td>Calvin Klein</td><td>Cítrico Aromático</td><td>Aceite de naranja, jengibre</td><td>Té azul, notas acuáticas</td><td>Cedro, pachulí, almizcle, ámbar</td></tr>
+        <tr class="new-item"><td>Lattafa Khamrah</td><td>Lattafa</td><td>Oriental Vainilla</td><td>Manzana, canela, cardamomo, jengibre</td><td>Praliné, frutas confitadas, flores blancas</td><td>Vainilla, café, haba tonka, benjuí, almizcle</td></tr>
+        <tr class="new-item"><td>Lattafa Qahwa</td><td>Lattafa</td><td>Oriental Vainilla</td><td>Cardamomo, café, canela</td><td>Flores blancas, frutas confitadas</td><td>Vainilla, haba tonka, almizcle, ámbar</td></tr>
+        <tr class="new-item"><td>Lattafa Teriaq</td><td>Lattafa</td><td>Oriental Especiado</td><td>Caramelo, almendra, damasco, pimienta</td><td>Miel, ruibarbo, flores blancas, rosa</td><td>Cuero, vainilla, labdano, vetiver, almizcle</td></tr>
         <tr><td>Lost Cherry</td><td>Tom Ford</td><td>Frutal Gourmand</td><td>Cereza, licor, almendra</td><td>Jazmín, rosa turca</td><td>Tonka, sándalo, cedro</td></tr>
         <tr><td>One</td><td>Calvin Klein</td><td>Cítrica Aromática</td><td>Limón, mandarina, piña, papaya, bergamota, cardamomo</td><td>Nuez moscada, violeta, lirio del valle, jazmín</td><td>Cedro, sándalo, almizcle, ámbar</td></tr>
         <tr><td>Oud Wood</td><td>Tom Ford</td><td>Amaderado Especiado</td><td>Cardamomo, palo de rosa, pimienta rosa</td><td>Oud, sándalo, vetiver</td><td>Vainilla, tonka, ámbar</td></tr>
+        <tr><td>Pure XS</td><td>Paco Rabanne</td><td>Oriental Especiado</td><td>Jengibre, limón, pimiento</td><td>Vainilla, canela, licor</td><td>Cedro, haba tonka, almizcle</td></tr>
         <tr><td>Santal 33</td><td>Le Labo</td><td>Amaderada Especiada</td><td>Cardamomo, iris, violeta</td><td>Sándalo australiano</td><td>Cedro, cuero, papiro</td></tr>
       </tbody>
     </table>
   </section>
 
 </body>
-
 </html>
